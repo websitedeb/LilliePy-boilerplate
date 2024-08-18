@@ -29,6 +29,9 @@ class use_query:
       self.error = f"Request error: {e}"
       self.loading = False
 
+  def get_data(self):
+    return {"data": self.data, "loading": self.loading, "error": self.error}
+
 
 class UseMutation:
 
@@ -60,3 +63,6 @@ class UseMutation:
     self.error = None
     self.data = None
     return self._mutate(*args, **kwargs)
+
+  def get_data(self):
+    return {"data": self.data, "loading": self.loading, "error": self.error}
