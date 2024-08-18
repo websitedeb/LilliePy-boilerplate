@@ -1,6 +1,6 @@
 from reactpy import component
 
-from .special.static import use_title
+from .special.hooks.static import use_title
 
 title, setTitle = use_title("Next.py Project")
 
