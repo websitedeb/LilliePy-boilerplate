@@ -1,36 +1,62 @@
-global data, isFetching
-data = {}
-isFetching = False
+import requests
+from tenacity import RetryError, retry, stop_after_attempt, wait_fixed
 
 
-def use_query(key, query):
-  i = 0
-  status = 'error'
-  res = query()
-  while res is None:
-    isFetching = True
-    status = False
-    i += 1
-    if i == 3:
-      status = 'error'
-      isFetching = False
-      break
-  else:
-    status = 'success'
-    isFetching = False
-    data.update({f"""{key}""": f"""{res}"""})
-  return res, status
+class use_query:
+
+  def __init__(self, query_key, query_fn, retry_attempts=3, wait_time=2):
+    self.query_key = query_key
+    self.query_fn = query_fn
+    self.retry_attempts = retry_attempts
+    self.wait_time = wait_time
+    self.loading = True
+    self.error = None
+    self.data = None
+    self._fetch_data()
+
+  @retry(stop=stop_after_attempt(3), wait=wait_fixed(2))
+  def _fetch_data(self):
+    try:
+      self.loading = True
+      response = self.query_fn(self.query_key)
+      response.raise_for_status()
+      self.data = response.json()
+      self.loading = False
+    except RetryError as e:
+      self.error = f"Request failed after {self.retry_attempts} retries: {e}"
+      self.loading = False
+    except requests.exceptions.RequestException as e:
+      self.error = f"Request error: {e}"
+      self.loading = False
 
 
-def use_mutation(key, mutation):
-  res = data[f"""{key}"""]
-  if res is not None:
-    ret = mutation(res)
-    res = ret
-  else:
-    isFetching = False
-    return False
+class UseMutation:
 
+  def __init__(self, mutation_fn, retry_attempts=3, wait_time=2):
+    self.mutation_fn = mutation_fn
+    self.retry_attempts = retry_attempts
+    self.wait_time = wait_time
+    self.loading = False
+    self.error = None
+    self.data = None
 
-def isFetched():
-  return isFetching
+  @retry(stop=stop_after_attempt(3), wait=wait_fixed(2))
+  def _mutate(self, *args, **kwargs):
+    try:
+      self.loading = True
+      response = self.mutation_fn(*args, **kwargs)
+      response.raise_for_status()
+      self.data = response.json()
+      self.loading = False
+      return self.data
+    except RetryError as e:
+      self.error = f"Mutation failed after {self.retry_attempts} retries: {e}"
+      self.loading = False
+    except requests.exceptions.RequestException as e:
+      self.error = f"Mutation error: {e}"
+      self.loading = False
+
+  def mutate(self, *args, **kwargs):
+    self.error = None
+    self.data = None
+    return self._mutate(*args, **kwargs)
