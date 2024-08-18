@@ -7,7 +7,7 @@ def use_query(key, query):
   i = 0
   status = 'error'
   res = query()
-  while res == None:
+  while res is None:
     isFetching = True
     status = False
     i += 1
@@ -24,7 +24,7 @@ def use_query(key, query):
 
 def use_mutation(key, mutation):
   res = data[f"""{key}"""]
-  if res != None:
+  if res is not None:
     ret = mutation(res)
     res = ret
   else:
