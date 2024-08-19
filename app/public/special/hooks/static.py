@@ -52,7 +52,3 @@ def use_icons(path):
 
 def use_bootstrap_icons(classId):
   return f"""\n <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@{classId}/font/bootstrap-icons.css"> \n"""
-
-
-def use_preloader():
-  pass  # make a preloader hook
