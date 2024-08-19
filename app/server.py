@@ -29,7 +29,12 @@ def render(content, icon, title=None):
 #server.route("/your_url")
 @server.route("/")
 def index():
-  return render(App(), icon=returnFavicon())
+  return render(App(""), icon=returnFavicon())
+
+
+@server.route("/<var>")
+def dynamic(var):
+  return render(App(var), icon=returnFavicon())
 
 
 @server.errorhandler(404)
