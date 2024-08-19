@@ -1,5 +1,5 @@
-from reactpy import component
 from hooks.static import use_css, use_js
+from reactpy import component
 
 
 @component
