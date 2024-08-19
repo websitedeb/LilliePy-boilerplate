@@ -27,6 +27,8 @@ def render(content, icon, title=None):
 
 
 #server.route("/your_url")
+
+
 @server.route("/")
 def index():
   return render(App(""), icon=returnFavicon())
