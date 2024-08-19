@@ -8,7 +8,10 @@ favicon, setFavicon = use_favicon("favicon.ico")
 
 @component
 def App(var):
-    return f"<h1> {var} Next.py Project </h1>"
+    if var:
+        return f"<h1> {var} Next.py Project </h1>"
+    else:
+        return "<h1> Next.py Project </h1>"
 
 
 def returnTitle():

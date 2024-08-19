@@ -1,5 +1,5 @@
 import flask
-from flask import render_template
+from flask import render_template, request
 from flask_cors import CORS
 from public.app import App, returnFavicon, returnTitle
 from public.special.not_found import Not_Found
@@ -26,6 +26,13 @@ def render(content, icon, title=None):
                            title=header)
 
 
+def compare_dy_url(url):
+  if url != "home":
+    return request.path.startswith(url)
+  else:
+    return request.path == "/"
+
+
 #server.route("/your_url")
 
 
@@ -36,7 +43,10 @@ def index():
 
 @server.route("/<var>")
 def dynamic(var):
-  return render(App(var), icon=returnFavicon())
+  if compare_dy_url("/"):
+    return render(App(var), icon=returnFavicon())
+  else:
+    return not_found(None)
 
 
 @server.errorhandler(404)
