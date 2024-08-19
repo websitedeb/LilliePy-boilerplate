@@ -33,7 +33,7 @@ class use_query:
     return {"data": self.data, "loading": self.loading, "error": self.error}
 
 
-class UseMutation:
+class use_mutation:
 
   def __init__(self, mutation_fn, retry_attempts=3, wait_time=2):
     self.mutation_fn = mutation_fn
