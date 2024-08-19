@@ -12,7 +12,7 @@ CORS(server)
 
 
 def render(content, icon, title=None):
-  converted = content().render()
+  converted = content.render()
   if title != None:
     return render_template("main.html",
                            content=converted,
@@ -29,12 +29,12 @@ def render(content, icon, title=None):
 #server.route("/your_url")
 @server.route("/")
 def index():
-  return render(App, icon=returnFavicon())
+  return render(App(), icon=returnFavicon())
 
 
 @server.errorhandler(404)
 def not_found(err):
-  return render(Not_Found, returnFavicon(), "404 ERROR"), 404
+  return render(Not_Found(), returnFavicon(), "404 ERROR"), 404
 
 
 if __name__ == "__main__":
