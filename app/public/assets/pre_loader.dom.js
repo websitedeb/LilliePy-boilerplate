@@ -1,4 +1,4 @@
 window.onload = () => {
-  const preloader = document.querySelector('.preloader');
-  preloader.classList.style.display = 'none';
+  const preloader = document.getElementById('preloader');
+  preloader.style.display = 'none';
 } 
