@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 from flask_sqlalchemy import SQLAlchemy
-from pymongo import MongoClient
+from pymongo import MongoClient  #uninstall any db you dont want
 from redis import Redis
 from sqlalchemy.orm import *
 
@@ -8,4 +8,4 @@ from sqlalchemy.orm import *
 class DB():
 
   def __init__():
-    pass
+    pass  #write your script here

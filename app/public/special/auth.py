@@ -45,3 +45,6 @@ def register_user(email, password):
     flash("User registered successfully", "success")
     #add your stuff here
     return redirect(url_for('login'))
+
+
+# or use other plateforms that are better at this job, eg. Auth0 (https://auth0.com/)
