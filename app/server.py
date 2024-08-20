@@ -1,6 +1,8 @@
 import flask
+from dotenv import load_dotenv
 from flask_cors import CORS
 from public.app import App
+from public.special.db import DB
 from public.special.not_found import Not_Found
 from public.special.util import compare_dy_url, render
 
