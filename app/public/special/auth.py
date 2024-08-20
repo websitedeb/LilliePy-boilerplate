@@ -26,7 +26,7 @@ def login_user_auth(email, password):
   else:
     flash("Invalid credentials", "danger")
     #add your stuff here
-    return redirect(url_for('login'))
+    return redirect(url_for('login'))  #change this
 
 
 def logout_user_auth():
@@ -44,7 +44,7 @@ def register_user(email, password):
     users_collection.insert_one({"email": email, "password": hashed_password})
     flash("User registered successfully", "success")
     #add your stuff here
-    return redirect(url_for('login'))
+    return redirect(url_for('login'))  #change this
 
 
 # or use other plateforms that are better at this job, eg. Auth0 (https://auth0.com/)
