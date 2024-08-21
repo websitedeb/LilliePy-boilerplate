@@ -1,3 +1,5 @@
+from os import getenv
+
 from dotenv import load_dotenv
 from flask_sqlalchemy import SQLAlchemy
 from pymongo import MongoClient  #uninstall any db you dont want
