@@ -11,3 +11,7 @@ class DB():
 
   def __init__():
     pass  #write your script here
+
+
+def use_db():
+  return DB()
