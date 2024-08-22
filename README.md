@@ -1,4 +1,0 @@
-# TODO: #
-
-* session handling
-  - JWT
