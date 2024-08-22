@@ -56,3 +56,8 @@ def use_bootstrap_icons(classId):
 
 def use_external_script(url):
   return f"""\n <script src="{url}"></script> \n"""
+
+
+def use_link(url):
+  from flask import url_for
+  return url_for(url) or f"/{url}"
