@@ -2,6 +2,7 @@ from os import getenv
 
 import flask
 from dotenv import load_dotenv
+from flask import request
 from flask_cors import CORS
 from public.app import App
 from public.special.auth import login_user_auth, logout_user_auth, register_user
@@ -30,6 +31,12 @@ def dynamic(var):
     return render(App(var))
   else:
     return not_found(None)
+
+
+@server.route("/name")
+def vars():
+  params = request.args.to_dict()
+  return render(App(params))
 
 
 @server.errorhandler(404)
