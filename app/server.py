@@ -9,6 +9,7 @@ from public.special.auth import login_user_auth, logout_user_auth, register_user
 from public.special.data import *
 from public.special.db import DB
 from public.special.not_found import Not_Found
+from public.special.store import Store
 from public.special.util import compare_dy_url, render
 
 server = flask.Flask(__name__,
