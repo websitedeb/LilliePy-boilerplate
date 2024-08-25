@@ -164,5 +164,5 @@ poetry.lock
 pyproject.toml
 
 # CHANGE 'APP' INTO YOUR FOLDERS NAME
-!app/public/comps
-!app/public/storage
+!app/public/comps/
+!app/public/storage/
