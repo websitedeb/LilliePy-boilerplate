@@ -5,7 +5,7 @@ from .special.hooks.router import use_dynamic_router
 from .special.hooks.static import use_favicon, use_title
 
 title, setTitle = use_title("LilliePy Project")
-favicon, setFavicon = use_favicon("favicon.ico")
+favicon, setFavicon = use_favicon("lillie.png")
 
 
 @component
