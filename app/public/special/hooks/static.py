@@ -50,8 +50,8 @@ def use_icons(path):
   return f"""\n <link href="../assets/{path}" rel="icon" /> \n"""
 
 
-def use_bootstrap_icons(classId):
-  return f"""\n <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@{classId}/font/bootstrap-icons.css"> \n"""
+def use_bootstrap_icons():
+  return f"""\n <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"> \n"""
 
 
 def use_external_script(url):
