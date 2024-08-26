@@ -61,3 +61,13 @@ def use_external_script(url):
 def use_link(url):
   from flask import url_for
   return url_for(url) or f"/{url}"
+
+
+def use_link_with_params(url, **kwargs):
+  from flask import url_for
+  return url_for(url, **kwargs) or f"/{url}"
+
+
+def use_component(module, pkg):
+  from importlib import import_module
+  return import_module(f".../comps/{module}", pkg)
