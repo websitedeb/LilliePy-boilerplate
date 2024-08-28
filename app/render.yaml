@@ -1,0 +1,23 @@
+previews:
+  generation: automatic
+
+services:
+  - type: web
+    runtime: python
+    name: app # change this!
+    repo: https://github.com/ #edit this!
+    numInstances: 3
+    region: oregon
+    plan: standard
+    branch: prod
+    buildCommand: bundle install
+    preDeployCommand: bundle exec ruby migrate.rb
+    startCommand: bundle exec ruby main.rb
+    autoDeploy: false
+    maxShutdownDelaySeconds: 120
+    domains:
+      - example.com
+      - www.example.org
+    envVars:
+      - key: API_BASE_URL
+        value: https://api.example.com
