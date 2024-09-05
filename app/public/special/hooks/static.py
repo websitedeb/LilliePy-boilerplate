@@ -71,3 +71,7 @@ def use_link_with_params(url, **kwargs):
 def use_component(module, pkg):
   from importlib import import_module
   return import_module(f".../comps/{module}", pkg)
+
+
+def use_asset(file):
+  return f".../assets/{file}"
