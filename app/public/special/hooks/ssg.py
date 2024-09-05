@@ -1,12 +1,12 @@
-from markdown_it import MarkdownIt
 from markdown import markdown
+from markdown_it import MarkdownIt
 
 
 def use_ssg_file(loc):
-  with open(f'../views/{loc}.md', "r") as markdown:
-    if markdown.read() != "":
-      md = MarkdownIt("commonmark", {'html': True, 'breaks': True})
-      return md.render(markdown.read())
+  with open(f'../views/{loc}.md', "r") as md:
+    if md.read() != "":
+      mdx = MarkdownIt("commonmark", {'html': True, 'breaks': True})
+      return mdx.render(md.read())
     else:
       return ""
 
