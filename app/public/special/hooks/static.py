@@ -1,3 +1,6 @@
+from flask import url_for
+
+
 def use_title(init):
   title = {"title": init}
 
@@ -51,7 +54,7 @@ def use_icons(path):
 
 
 def use_bootstrap_icons():
-  return f"""\n <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"> \n"""
+  return """\n <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"> \n"""
 
 
 def use_external_script(url):
@@ -59,19 +62,21 @@ def use_external_script(url):
 
 
 def use_link(url):
-  from flask import url_for
   return url_for(url) or f"/{url}"
 
 
 def use_link_with_params(url, **kwargs):
-  from flask import url_for
   return url_for(url, **kwargs) or f"/{url}"
 
-
-def use_component(module, pkg):
-  from importlib import import_module
-  return import_module(f".../comps/{module}", pkg)
-
-
 def use_asset(file):
-  return f".../assets/{file}"
+  return f"../assets/{file}"
+
+def use_tailwind():
+  return "\n <script src=\"https://cdn.tailwindcss.com\"></script> \n"
+
+def use_tailwind_config(file):
+  return f"\n <script src=\"../assets/{file}\"></script> \n"
+
+def use_contents(file):
+  with open(f"../assets/{file}", "r") as contents:
+    return contents.read()
