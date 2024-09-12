@@ -8,6 +8,7 @@ from public.app import App
 from public.special.auth import login_user_auth, logout_user_auth, register_user
 from public.special.data import *
 from public.special.db import DB
+from public.special.layout import Layout
 from public.special.not_found import Not_Found
 from public.special.socket import Socket
 from public.special.store import Store
@@ -24,13 +25,13 @@ CORS(server)
 
 @server.route("/")
 def index():
-  return render(App(""))
+  return render(App(""), Layout)
 
 
 @server.route("/<var>")
 def dynamic(var):
   if compare_dy_url("/"):
-    return render(App(var))
+    return render(App(var), Layout)
   else:
     return not_found(None)
 
@@ -38,12 +39,12 @@ def dynamic(var):
 @server.route("/name")
 def vars():
   params = request.args.to_dict()
-  return render(App(params))
+  return render(App(params), Layout)
 
 
 @server.errorhandler(404)
 def not_found(err):
-  return render(Not_Found(), "404 ERROR"), 404
+  return render(Not_Found(), title="404 ERROR", Layout=Layout), 404
 
 
 if __name__ == "__main__":

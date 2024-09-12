@@ -3,8 +3,8 @@ from flask import render_template, request
 from ..app import returnFavicon, returnTitle
 
 
-def render(content, title=None):
-  converted = content.render()
+def render(content, Layout, title=None):
+  converted = Layout(content.render()).render()
   if title != None:
     return render_template("main.html",
                            content=converted,
