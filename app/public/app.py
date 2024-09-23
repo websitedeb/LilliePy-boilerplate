@@ -2,7 +2,7 @@ from dominate import tags as html  # use this if you want to
 from reactpy import component
 
 from .special.hooks.router import use_dynamic_router
-from .special.hooks.static import use_favicon, use_title
+from .special.hooks.static import use_favicon, use_title, use_meta
 
 title, setTitle = use_title("LilliePy Project")
 favicon, setFavicon = use_favicon("lillie.png")
@@ -25,3 +25,10 @@ def returnTitle():
 
 def returnFavicon():
     return favicon()
+
+def returnMeta():
+    return use_meta({
+        'description': 'LilliePy Project',
+        'keywords': 'Lilliepy',
+        'author': 'name'
+    })

@@ -1,6 +1,6 @@
 from flask import render_template, request
 
-from ..app import returnFavicon, returnTitle
+from ..app import returnFavicon, returnMeta, returnTitle
 
 
 def render(content, Layout, title=None):
@@ -9,13 +9,15 @@ def render(content, Layout, title=None):
     return render_template("main.html",
                            content=converted,
                            icon=returnFavicon(),
-                           title=title)
+                           title=title,
+                           meta=returnMeta())
   else:
     header = returnTitle()
     return render_template("main.html",
                            content=converted,
                            icon=returnFavicon(),
-                           title=header)
+                           title=header,
+                           meta=returnMeta())
 
 
 def compare_dy_url(url):
