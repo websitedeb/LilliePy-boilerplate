@@ -1,5 +1,6 @@
 from reactpy import use_state
 
+
 def use_transition():
     is_pending, set_is_pending = use_state(False)
 
