@@ -162,6 +162,7 @@ cython_debug/
 *.replit
 poetry.lock
 pyproject.toml
+.upm/
 
 # CHANGE 'APP' INTO YOUR FOLDERS NAME
 !./app/public/comps/
