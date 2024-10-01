@@ -5,19 +5,19 @@ services:
   - type: web
     runtime: python
     name: app # change this!
-    repo: https://github.com/ #edit this!
+    repo: https://github.com/[NAME]/[REPO] #edit this!
     numInstances: 1
     region: oregon
     plan: standard
     branch: prod
     buildCommand: python install
     preDeployCommand: python install
-    startCommand: python server.py
+    startCommand: python ./app/server.py
     autoDeploy: false
     maxShutdownDelaySeconds: 120
-    domains:
-      - example.com
+    domains:    # change this!
+      - example.com 
       - www.example.org
     envVars:
-      - key: API_BASE_URL
-        value: https://api.example.com
+      - key: API_BASE_URL    # change this! (if needed)
+        value: https://api.example.com    # change this! (if needed)
