@@ -16,5 +16,5 @@
 
 # ❤️Thanks Too!❤️ #
 
-<img src="https://archive.org/download/github.com-reactive-python-reactpy_-_2023-06-07_19-53-29/cover.jpg" alt="reactpy" width="200" />
-<img src="https://miro.medium.com/v2/resize:fit:618/0*FBXoiXHbZe5ssPho.png" alt="flask" width="200" />
+<img src="https://raw.githubusercontent.com/reactive-python/reactpy/refs/heads/main/branding/png/reactpy-logo-landscape.png" alt="reactpy" width="300px" height="100px"/>
+<img src="https://miro.medium.com/v2/resize:fit:618/0*FBXoiXHbZe5ssPho.png" alt="flask" width="300px" height="100px"/>
