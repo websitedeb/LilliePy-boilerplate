@@ -25,3 +25,20 @@ def compare_dy_url(url):
     return request.path.startswith(url)
   else:
     return request.path == "/"
+
+
+def compiler(element):
+  data = element().render()
+  tag = data["tagName"]
+  children = data["children"]
+  props = children[1]
+
+  html_str = f"<{tag}"
+
+  if props:
+    for key, value in props.items():
+      html_str += f' {key}="{value}"'
+
+  html_str += f">{children[0]}</{tag}>"
+
+  return html_str
