@@ -3,8 +3,30 @@ from flask import render_template, request
 from ..app import returnFavicon, returnMeta, returnTitle
 
 
+def compiler(element):
+  data = element.render()
+  print(data)
+  tag = data["tagName"]
+  children = data["children"]
+  props = children[1]
+
+  html_str = f"<{tag}"
+
+  if props:
+    for key, value in props.items():
+      html_str += f' {key}="{value}"'
+
+  html_str += f">{children[0]}</{tag}>"
+
+  return html_str
+
+
 def render(content, Layout, title=None):
-  converted = Layout(content.render()).render()
+  converted = None
+  try:
+    converted = compiler(Layout(content.render()))
+  except (TypeError):
+    converted = Layout(content.render()).render()
   if title != None:
     return render_template("main.html",
                            content=converted,
@@ -25,20 +47,3 @@ def compare_dy_url(url):
     return request.path.startswith(url)
   else:
     return request.path == "/"
-
-
-def compiler(element):
-  data = element().render()
-  tag = data["tagName"]
-  children = data["children"]
-  props = children[1]
-
-  html_str = f"<{tag}"
-
-  if props:
-    for key, value in props.items():
-      html_str += f' {key}="{value}"'
-
-  html_str += f">{children[0]}</{tag}>"
-
-  return html_str
