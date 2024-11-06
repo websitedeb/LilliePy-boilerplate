@@ -1,4 +1,4 @@
-from reactpy import component
+from reactpy import component, html
 
 from .special.hooks.router import use_dynamic_router
 from .special.hooks.static import use_favicon, use_meta, use_title
@@ -24,6 +24,7 @@ def returnTitle():
 
 def returnFavicon():
     return favicon()
+
 
 def returnMeta():
     return use_meta({
