@@ -1,4 +1,3 @@
-from dominate import tags as html  # use this if you want to
 from reactpy import component
 
 from .special.hooks.router import use_dynamic_router
