@@ -5,10 +5,10 @@ from ..app import returnFavicon, returnMeta, returnTitle
 
 def compiler(element):
   data = element.render()
-  print(data)
   tag = data["tagName"]
   children = data["children"]
-  props = children[1]
+  content = children[0] if len(children) > 0 else ""
+  props = children[1] if len(children) > 1 else {}
 
   html_str = f"<{tag}"
 
@@ -16,7 +16,7 @@ def compiler(element):
     for key, value in props.items():
       html_str += f' {key}="{value}"'
 
-  html_str += f">{children[0]}</{tag}>"
+  html_str += f">{content}</{tag}>"
 
   return html_str
 
@@ -24,7 +24,7 @@ def compiler(element):
 def render(content, Layout, title=None):
   converted = None
   try:
-    converted = compiler(Layout(content.render()))
+    converted = Layout(compiler(content)).render()
   except (TypeError):
     converted = Layout(content.render()).render()
   if title != None:

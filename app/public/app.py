@@ -10,12 +10,12 @@ favicon, setFavicon = use_favicon("lillie.png")
 @component
 def App(var):
     if use_dynamic_router("/name"):
-        return f"<h1> Hello {var.get('name')}! </h1>"
+        return html.h1(f"Hello {var.get('name')}!", {"id": "greeting"})
     else:
         if var:
-            return f"<h1> {var} LilliePy Project </h1>"
+            return html.h1(f"{var}'s Lilliepy Project", {"class": "greeting"})
         else:
-            return "<h1> LilliePy Project </h1>"
+            return html.h1("Lilliepy Project")
 
 
 def returnTitle():
