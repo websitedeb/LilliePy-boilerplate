@@ -68,21 +68,30 @@ def use_link(url):
 def use_link_with_params(url, **kwargs):
   return url_for(url, **kwargs) or f"/{url}"
 
+
 def use_asset(file):
   return f"../assets/{file}"
+
 
 def use_tailwind():
   return "\n <script src=\"https://cdn.tailwindcss.com\"></script> \n"
 
+
 def use_tailwind_config(file):
   return f"\n <script src=\"../assets/{file}\"></script> \n"
+
 
 def use_contents(file):
   with open(f"../assets/{file}", "r") as contents:
     return contents.read()
 
+
 def use_meta(meta_info):
   tags = []
   for name, content in meta_info.items():
-      tags.append(f'<meta name="{name}" content="{content}"> \n')
+    tags.append(f'<meta name="{name}" content="{content}"> \n')
   return '\n'.join(tags)
+
+
+def use_api_endpoint(endpoint, port=8080):
+  return f"http://localhost:{port}/{endpoint}"
